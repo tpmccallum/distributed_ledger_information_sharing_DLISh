@@ -63,7 +63,7 @@ Message formats are completely customizable. Message formats are ephemeral. They
 
 ```
 
-The request signals that we are constructing a delivery address as follows
+Using the tables above, the request signals that we are constructing a delivery address as follows
 
 ```
 
@@ -71,7 +71,7 @@ salutation, lastName, streetNumber, streetName, streetType, suburb, city, state,
 
 ```
 
-The response would be as follows
+Using the tables above as a reference, the response would be as follows
 
 ```
 
