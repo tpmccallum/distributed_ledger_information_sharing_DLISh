@@ -5,7 +5,7 @@ A mechanism to encode, encrypt and share text between blockchains using atomic t
 Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of the data. DLISh seeks to solve this problem. At least for the e-commerce space. DLISh is a minimalistic, self tuning storage system for decentralized ledger applications i.e. blockchains.
 
 ### Storage format
-DLISh uses key value pairs. The order of the keys in the key value pairs is not important. The order is changed on a regular basis as part of the performance tuning. Performance tuning will be explained later. The format of the values is important and can be customized using the message formatting options. These are introduced below.
+DLISh uses key value pairs. All data is exclusively UTF-8. The order of the keys in the key value pairs is not important. The order is changed on a regular basis as part of the performance tuning. Performance tuning will be explained later. The format of the values is important and can be customized using the message formatting options. These are introduced below.
 
 ### Word storage
 Whilst there are over 1 million roads in North America, over 9, 600 of them are named "park". Just as with names in the English language, there is a lot of redundancy. From a scalability and efficiency standpoint, it is not necessary to store one single word more than once, anywhere on a blockchain. In DLISh, the word storage container is used to define all English words (not individual letters or numbers or alphanumeric strings). These words are used to make up names, addresses and so forth. DLISh uses convention instead of configuration; only lower case words (with more than one character) will be accepted. 
