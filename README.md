@@ -30,19 +30,19 @@ Decentralized systems are inherently bad at storing and sharing data. This is du
 All data is exclusively UTF-8. The system comprises of a master list of key value pairs. The values are groups of letters (words) only. The keys are numbers (sequentially allocated as values are added) only. All numbers for use in e-commerce setting are spelled our explicitly. For example one thousand and twenty six dollars and fourteen cents. All of the relevant words associated with storing numbers and currency etc. are stored in the master list of words i.e. hundred, thousand, million ... seventy, eighty, ninety etc.
 
 ## Premis
-Some say that the blockchain can be considered a world computer (which has promised to decentralize everything). A world computer needs to store the world's data. In the case of decentralization there is no single "server" to store the data for reference. Instead, in a decentralized architecture, all of the data must be stored only on the peers (which make up the peer to peer network). Simply mirroring the data is not sustainable. For example, the bitcoin blockchain is over 150GB < https://blockchain.info/charts/blocks-size >. As time goes on, blockchains will continue to grow. It is important to note that less users are using desktop PCs and servers and more users are using hand-held mobile devices. Some of the latest mbile devices have only between 32 and 128 GB of total storage.
+Some say that the blockchain can be considered a world computer (which has promised to decentralize everything). A world computer needs to store the world's data. In the case of decentralization there is no single "server" to store the data for reference. Instead, in a decentralized architecture, all of the data must be stored only on the peers (which make up the peer to peer network). Simply mirroring the data (verbosely) as traditionally done in blockchains is not sustainable. For example, the bitcoin blockchain is over 150GB < https://blockchain.info/charts/blocks-size >. This means that each participating full node has to download and store more than 150GB of data to participate. As time goes on, blockchains will continue to grow. It is important to note that less users are using desktop PCs and servers and more users are using hand-held mobile devices. Mobile devices have limited storage. Some of the latest mbile devices have only between 32 and 128 GB of **total** storage.
 
 Imagine a completely decentralized e-commerce ecosystem where all buyers, sellers, merchants, delivery services and so forth are registered and interacting in real time using handheld mobile devices. The sorts of information changing hands would include product Id's, product names, product prices, first names, last names, addresses, phone numbers, post codes, transactions and more.
 
 Fortunately languages are all very repetative and traditional storage of data holds an incredible amount of redundancy (per item). For example, 9, 600 roads in North America alone are named "park" i.e. Park Rd. Many of us share first names or last names with others globally and so on. With this in mind, it should never be the case that a single word is stored in more than one place on the blockchain. To achieve this we create and store a master list of words for reference within each peer node of a blockchain. You might be surprized to learn that **a text file containing over 1/2 million words only consumes around 5MB**. That's 0.005 of a GB. 
 
-Put simply a master file containing over 1/2 million words **takes up 30 thousand times less space** (storage on computer hard drive) than the bitcoin blockchain.
+Put simply, a master file containing over 1/2 million words **takes up 30 thousand times less space** (storage on computer hard drive) than the bitcoin blockchain.
 
 ## How DLISh works
-Imagine now, that each of the words stored in the master file can be compressed to 2 UTF-8 numbers. DLISh works by looking up a word, finding the corresponding numerical key, then performing a mathematical operation on that key in order to reduce it to the size of 2 UTF-8 numbers.
+Imagine now, that each of the words stored in the master file can be compressed to 2 UTF-8 numbers. DLISh works by looking up a word, finding the corresponding numerical key, then performing a mathematical operation on that key in order to reduce the key to the size of 2 UTF-8 numerical characters.
 
 ## The algorithms
-The algorithms are predefined. The encoding algorithms have a qualifier which the number/key, to be encoded, must pass. Once qualified, the key is passed to the encoding algorithm. The encoding algorith returns two single digit numbers. The first digit returned is the reduced number. The second number returned is a single digit which can be passed to the decode function when decoding takes place. This functionality is so that the decode function can learn how the encoding function operated on the original number i.e. how many times the encoding function performed, say, the square root function on the number.
+The algorithms are predefined. They are called using UTF-8 alphabetic characters. The encoding algorithms have a qualifier which the number/key, to be encoded, must pass. Once qualified, the key is passed to the appropriate encoding algorithm. The encoding algorith returns two single digit numbers. The first digit returned is the reduced number. The second number returned is a "helper" which can be passed to the decode function when decoding takes place. The "helper" is created dynamically by the encode function and is stored so that it can be later passed to the decode function as an argument. This way the decoding function can learn how many times the encoding function operated on the original number i.e. how many times the encoding function performed, say, the square root function on the number. 
 
 Once encoded, DLISh allows for information to be encrypted and transmitted inside blockchain transactions. The encryption and decryption can be performed between two peers on the blockchain using proxy re-encryption. The proxy re-encryption component (provided by NuCypher [2]) has been successfully tested. It is hoped that the encoded and encrypted data can be sent across blockchains using the Cosmos [1] (internet of blockchains). That part is out of scope for this document. Please follow the links at the base of this document.
 
@@ -57,13 +57,16 @@ If we were to store and/or transmit a users full name and address our applicatio
 - select the appropriate mathematical function to perform on the key (number to be encoded must pass a series of predefined tests such as is the number divisable by 10 and so forth)
 - reveal the encoded string for storage and/or transmission
 
-Here is a hypothetical example
-Essentially we are storing the following data
-john smith 
-sixty cunningham street
-southern cross junction
-sydney 
-australia
+
+```
+
+John Smith
+Sixty Cunningham Street
+Southern Cross Junction
+Sydney
+Australia
+
+```
 
 If we break this data up into individual keys we will have the following
 
@@ -88,15 +91,17 @@ If we break this data up into individual keys we will have the following
 
 The above text has 72 characters if you include the space character where appropriate. 
 
-The fact that DLISh can encode the above into 30 or less UFT-8 characters is not the whole point. Of course sending a transaction with a 58% reduction is size is great. However the value of DLISh is also realized in that whenever a word like australia is recorded anywhere on the blockchain. It will only ever take up the space of 3 UTF-8 characters instead of 9. It is very likely that an Australian e-commerce blockchain implementation would record that text thousands if not millions of times as part of its ongoing business activities (product names, product descriptions, customer addresses and so forth).  
+The fact that DLISh can encode the above into 28 UFT-8 characters is not the whole point. Of course sending a transaction with a 61% reduction is size is great. However the value of DLISh is also realized in that whenever a word like australia is recorded anywhere on the blockchain. It will only ever take up the space of 3 UTF-8 characters instead of 9. In a real world use case, it is very likely that an Australian e-commerce blockchain implementation would record the text "Australia" thousands if not millions of times as part of its ongoing business activities (product names, product descriptions, customer addresses and so forth). Consider the word "Australia" used for every delivery address for every online purchase in a company that ships 3 million purchases per year. 
 
 ## The maths behind the algorithms
-DLISh has the potential to store 52 different mathematical equations which are capable of compressing the large numbers. Each mathematical equation is signalled through the use of a single UTF-8 letter such as "a" or "A". The letters range from the UTF-8 representation of (lower case) a through z as well as from (capital) A through Z (26 letters in the alphabet and therefore a total of 52 equation possibilities). The creator of an algorithm gets assigned a letter forever. 
+DLISh has the potential to store 52 different mathematical equations/algorithms which are capable of compressing the large numbers. Each mathematical equation is signalled through the use of a single UTF-8 letter such as "a" or "A". The letters range from the UTF-8 representation of (lower case) a through z as well as from (capital) A through Z (26 letters in the alphabet and therefore a total of 52 equation possibilities). The creator of an algorithm gets assigned a letter forever. 
 
-This document only demonstrates two simple algorithms. The global software development community and global scholarly community can define many more algorithms (another 50 infact). Once an algorith is perfected and tested it can be added to the base layer protocol permanently. The creator of the algorithm gets to create a new file which the system will use. The creator also gets the opportunity to describe how and why their algorithm works and also record their personal or organisational contact information. The creators can be individuals or even whole schools, colleges, businesses and more.
+This document only demonstrates two simple algorithms ("a" and "b"). The global software development community and global scholarly community can define many more algorithms (another 50 infact). Once an algorith is perfected and tested it can be added to the base layer protocol permanently. The creator of the algorithm gets to create a new file which the system will use. The creator also gets the opportunity to describe how and why their algorithm works and also record their personal or organisational contact information. The creators can be individuals or even whole schools, colleges, businesses or compamies.
 
 ## More on the algorithms
-**The first 100 numbers 0 through 99 are not used, these are used for performance tuning** 
+**The first 100 numbers 0 through 99 are not used for the initial encoding** 
+It is not yet known if (when assigning keys to words) some numbers will be left out on purpose. We want it to be as easy as possible for the algorithms to reduce a key (number) to a single digit. It is feasable to skip difficult numbers. For example if there are say less than 2 million words in the master file it will make no difference to the key length if a word is assigned 1, 000 101 or 1, 514 101. Theoretically we can use numbers as high as 9, 999 999 and still stay under the 8 digit length.
+
 All encoded data is represented by a single letter (the name of the function) and two numbers. The first number is the encoded value and the second number is an argument (a helper number which was created in the encode algorithm which can be passed to the decode algorithm). Each encoding algorith must take the key and reduce it to a single number i.e. take 65536 and reduce it to 2 (we just mentioned the helper number which in this case is 4). Each decoding algorithm must recreate the original key starting with the encoded value (the helper number is utilized as an argument to the decode function as you will see shortly).
 
 Let's encode our hypothetical first and last name which have the values of 200 and 100 respectively. Remember these are just examples to demonstrate how encoding and decoding functions work. Obviously with some numbers there will be a degree of difficulty reducing the number to a single digit. But remember there are 52 different algorithm/function place-holders available and each one can have an additional single digit argument to help things along. It may also be the case that if some numbers are problematic/impossible to reduce, the system could be hard coded to be leave out those numbers when assigning key values.
