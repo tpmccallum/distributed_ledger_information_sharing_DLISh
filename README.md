@@ -178,17 +178,21 @@ The above function b, when called with signature (2, 4) will return 65536 (the o
 At this stage we have john (200), smith (100) and sixty (655536) which have been encoded into a22a12b24.
 
 If we encode the rest of the data we get the final encoding of 
+
 a**22**a12b24b92a**33**a13b23a43a23b52
 
 If we find double digits, we simply collapse them to a single digit (when encoding) and then expand the single digit back to a double digit during decoding. For example the above encoded string ends up like the following.
+
 a**2**a12b24b92a**3**a13b23a43a23b52
 
 ## Performance tuning
 As we discussed earlier the first one hundred numbers are reserved. These numbers 0 through 99 are used at a later dynamic learning stage. It is predicted that, due to the algorithms being generic/generalized, repitition will occur. For example it is possible that either the repeated use of particular words and/or the coincedental output from algorithms will occur. The system will store a temporary count of repeated sets of encoded data. When a particular set of encoded data is repeated often enough the system will automatically allocate one of the reserved numbers to that pattern. Further compressing the encoded string. 
 
-To realize this the system will always parse the encoded string in chunks (expecting a letter followed by one or two single digits - one chunck). When the system sees a number from 10 to 99 on its own it will refer to the master compression table to obtain the full length encoded string. Once this has been resolved, the system will continue biting off chunks of characters (letter, number,[number]).
+To realize this the system will always parse the encoded string in chunks (expecting a letter followed by one or two single digits - one chunck). When the system sees a number from 10 to 99 on its own (**without an alphabetic prefix**)it will refer to the master compression table to obtain the full length encoded string. Once this has been resolved, the system will continue biting off chunks of characters (letter, number,[number]).
 
-Essentially, the system will eventually learn about the most frequently used (top 90) patterns, no matter how short or long. These will be shortened by assigning them one of the values between 10 and 99. 
+You will notice that the second number is optional in the parsing (when initially decoding), this is because double digits are converted to single digits i.e. 22 (e22) becomes just 2 (e2) and 44 (a44) becomes just 4 (a4).
+
+Essentially, the system will eventually learn about the most frequently used (top 90) patterns, no matter how short or long they are. There will always be some sort of pattern for a given ecosystem. These patterns will be shortened by assigning them one of the values between 10 and 99. 
 
 An example of the master compression table is below.
 
