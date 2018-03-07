@@ -69,10 +69,10 @@ If we break this data up into individual keys we will have the following
 
 ```
 
-100	(smith)
-200	(john)
-256	(cross)
-625	(australia)
+100 (smith)
+200 (john)
+256 (cross)
+625 (australia)
 1000 (southern)
 2000 (sydney)
 3000 (street)
