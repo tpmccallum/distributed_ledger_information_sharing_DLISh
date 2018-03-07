@@ -1,34 +1,23 @@
 # Distributed Ledger Information Sharing (DLISh)
-A mechanism to encode, encrypt and share text between blockchains using atomic transactions and proxy re-encryption
+A system which stores and shares all reuired information on, and between, blockchains.
 
-### Background
-Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of the data. DLISh seeks to solve this problem. At least for the e-commerce space. DLISh is a minimalistic, self tuning storage system for decentralized ledger applications i.e. blockchains.
+## Background
+Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of all data. DLISh seeks to solve this problem. DLISh is a storage and communication system for decentralized ledger applications i.e. blockchains.
 
-### Storage format
-DLISh uses key value pairs. All data is exclusively UTF-8. The order of the keys in the key value pairs is not important. The order is changed on a regular basis as part of the performance tuning. Performance tuning will be explained later. The format of the values is important and can be customized using the message formatting options. These are introduced below.
+## Storage format
+All data is exclusively UTF-8. The system comprises of a master list of key value pairs. The values are groups of letters (words) only. The keys are numbers (sequentially allocated as values are added) only. 
 
-### Word storage
-Whilst there are over 1 million roads in North America, over 9, 600 of them are named "park". Just as with names in the English language, there is a lot of redundancy. From a scalability and efficiency standpoint, it is not necessary to store one single word more than once, anywhere on a blockchain. In DLISh, the word storage container is used to define all English words (not individual letters or numbers or alphanumeric strings). These words are used to make up names, addresses and so forth. DLISh uses convention instead of configuration; only lower case words (with more than one character) will be accepted. 
+## Premis
+Some say that the blockchain can be considered a world computer (which has promised to decentralize everything). A world computer needs to store the world's data. In the case of decentralization there is no single "server" to store the data for reference. In a decentralized architecture all of the data must be stored only on the peers (which make up the peer to peer network). Simply mirroring the data is not sustainable. For example, the bitcoin blockchain is over 150GB < https://blockchain.info/charts/blocks-size >. As time goes on, blockchains will continue to grow. It is important to note that less users are using desktop PCs and servers and more users are using hand-held mobile devices. Some of the latest mbile devices have only between 32 and 128 GB of total storage.
 
-```
+Imagine a completely decentralized e-commerce ecosystem where all buyers, sellers, merchants, delivery services and so forth are registered and interacting in real time using handheld mobile devices. The sorts of information changing hands would include product Id's, product names, product prices, first names, last names, addresses, phone numbers, post codes, transactions and more.
 
--------------------------
-|    k    |      v      |
--------------------------
-|    1    |  park       |
-|    2    |  smith      |
-|    3    |  newtown    |
-|    4    |  road       |
-|    5    |  sydney     |
-|    6    |  australia  |
-|    7    |  mr         |
+Fortunately languages are all very repetative and traditional storage of data holds an incredible amount of redundancy (per item). For example, 9, 600 roads in North America alone are named "park" i.e. Park Rd. Many of us share first names or last names with others globally and so on. With this in mind, it should never be the case that a single word is stored in more than one place on the blockchain. To achieve this we create and store a master list of words for reference within each peer node of a blockchain. You might be surprized to learn that a text file containing over 1/2 million words only consumes around 5MB. That's 0.005 of a GB. Put simply a master file containing over 1/2 million words takes up 30, 000 times less space than the bitcoin blockchain.
 
--------------------------
+## How DLISh works
+Imagine now, that each of the words stored in the master file can be compressed to between 1 and 3 UTF-8 characters. DLISh works by looking up a word, finding the corresponding key, then performing a mathematical operation on that key in order to reduce it to 1 UTF-8 character (or at worst 2 to 3 UTF-8 characters). DLISh allows for information to be transmitted inside blockchain transactions taking up the least amount of space possible.
 
 
-```
-
-This word storage container is stored on the blockchain. However, it is important to note that even 1/2 million words only consumes around 5MB in text file format and that the Oxford English Dictionary only contains around 171,476 words. We will come back to how words are added and ordered later on. For now let's look at the metadata side of things.
 
 ### Metadata storage
 The metadata storage container is used to define the type of data being stored. DLISh uses convention instead of configuration and metadata which is not lower camel case will not be accepted. Below is only a small example. You can add as many metadata values as you need via the API.
