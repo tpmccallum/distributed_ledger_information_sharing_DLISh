@@ -15,17 +15,22 @@ Imagine a completely decentralized e-commerce ecosystem where all buyers, seller
 Fortunately languages are all very repetative and traditional storage of data holds an incredible amount of redundancy (per item). For example, 9, 600 roads in North America alone are named "park" i.e. Park Rd. Many of us share first names or last names with others globally and so on. With this in mind, it should never be the case that a single word is stored in more than one place on the blockchain. To achieve this we create and store a master list of words for reference within each peer node of a blockchain. You might be surprized to learn that a text file containing over 1/2 million words only consumes around 5MB. That's 0.005 of a GB. Put simply a master file containing over 1/2 million words takes up 30, 000 times less space than the bitcoin blockchain.
 
 ## How DLISh works
-Imagine now, that each of the words stored in the master file can be compressed to between 1 and 3 UTF-8 characters. DLISh works by looking up a word, finding the corresponding key, then performing a mathematical operation on that key in order to reduce it to 1 UTF-8 character (or at worst 2 to 3 UTF-8 characters). DLISh allows for information to be transmitted inside blockchain transactions taking up the least amount of space possible.
+Imagine now, that each of the words stored in the master file can be compressed to between 1 and 3 UTF-8 characters. DLISh works by looking up a word, finding the corresponding numerical key, then performing a mathematical operation on that key in order to reduce it to the size of 1 UTF-8 character (or at worst 2 to 3 UTF-8 characters). Once encoded, DLISh allows for information to be encrypted and transmitted inside blockchain transactions. The encryption and decryption can be performed between two peers on the blockchain using proxy re-encryption. The proxy re-encryption component (provided by NuCypher [2]) has been successfully tested.
 
-Consider the following hypothetical master list.
+Now, let's consider the following hypothetical master list.
 
 ![master list](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/master_list.png)
 
-Consider the following mathematical equations
+If we were to store and/or transmit a users full name and address our application would do so by performing the following steps:
+- allow the user to enter data
+- validate and cleanse the data
+- obtain the relavent sequential numerical key or append any new words to the end of the masterlist and obtain the newly created key
+- select the appropriate mathematical function to perform on the key (based on optimal compression)
+- reveal the encoded string for storage and/or transmission
 
-\sqrt[n]{k}  
-\sqrt[n]{k}
-\sqrt[n]{k}
+Here is a hypothetical example
+
+
 
 ### Metadata storage
 The metadata storage container is used to define the type of data being stored. DLISh uses convention instead of configuration and metadata which is not lower camel case will not be accepted. Below is only a small example. You can add as many metadata values as you need via the API.
