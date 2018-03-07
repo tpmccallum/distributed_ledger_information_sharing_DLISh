@@ -17,6 +17,11 @@ Fortunately languages are all very repetative and traditional storage of data ho
 ## How DLISh works
 Imagine now, that each of the words stored in the master file can be compressed to between 1 and 3 UTF-8 characters. DLISh works by looking up a word, finding the corresponding key, then performing a mathematical operation on that key in order to reduce it to 1 UTF-8 character (or at worst 2 to 3 UTF-8 characters). DLISh allows for information to be transmitted inside blockchain transactions taking up the least amount of space possible.
 
+Consider the following hypothetical master list.
+![master list](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/master_list.png)
+
+
+
 
 
 ### Metadata storage
