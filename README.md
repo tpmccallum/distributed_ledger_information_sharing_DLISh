@@ -18,11 +18,14 @@ Fortunately languages are all very repetative and traditional storage of data ho
 Imagine now, that each of the words stored in the master file can be compressed to between 1 and 3 UTF-8 characters. DLISh works by looking up a word, finding the corresponding key, then performing a mathematical operation on that key in order to reduce it to 1 UTF-8 character (or at worst 2 to 3 UTF-8 characters). DLISh allows for information to be transmitted inside blockchain transactions taking up the least amount of space possible.
 
 Consider the following hypothetical master list.
+
 ![master list](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/master_list.png)
 
+Consider the following mathematical equations
 
-
-
+\sqrt[n]{k}  
+\sqrt[n]{k}
+\sqrt[n]{k}
 
 ### Metadata storage
 The metadata storage container is used to define the type of data being stored. DLISh uses convention instead of configuration and metadata which is not lower camel case will not be accepted. Below is only a small example. You can add as many metadata values as you need via the API.
