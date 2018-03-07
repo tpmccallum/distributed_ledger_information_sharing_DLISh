@@ -21,7 +21,7 @@ a22a12b24b92a33a13b23a43a23b52
 
 ```
 
-and never see a word like "John" stored more than once anywhere in storage system ever again.
+and never see a word like "John" stored more than once anywhere in your storage system ever again.
 
 ## Background
 Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of all data. DLISh seeks to solve this problem. DLISh is a storage and communication system for decentralized ledger applications i.e. blockchains.
@@ -34,7 +34,9 @@ Some say that the blockchain can be considered a world computer (which has promi
 
 Imagine a completely decentralized e-commerce ecosystem where all buyers, sellers, merchants, delivery services and so forth are registered and interacting in real time using handheld mobile devices. The sorts of information changing hands would include product Id's, product names, product prices, first names, last names, addresses, phone numbers, post codes, transactions and more.
 
-Fortunately languages are all very repetative and traditional storage of data holds an incredible amount of redundancy (per item). For example, 9, 600 roads in North America alone are named "park" i.e. Park Rd. Many of us share first names or last names with others globally and so on. With this in mind, it should never be the case that a single word is stored in more than one place on the blockchain. To achieve this we create and store a master list of words for reference within each peer node of a blockchain. You might be surprized to learn that a text file containing over 1/2 million words only consumes around 5MB. That's 0.005 of a GB. Put simply a master file containing over 1/2 million words takes up 30 thousand times less space (storage on computer hard drive) than the bitcoin blockchain.
+Fortunately languages are all very repetative and traditional storage of data holds an incredible amount of redundancy (per item). For example, 9, 600 roads in North America alone are named "park" i.e. Park Rd. Many of us share first names or last names with others globally and so on. With this in mind, it should never be the case that a single word is stored in more than one place on the blockchain. To achieve this we create and store a master list of words for reference within each peer node of a blockchain. You might be surprized to learn that **a text file containing over 1/2 million words only consumes around 5MB**. That's 0.005 of a GB. 
+
+Put simply a master file containing over 1/2 million words **takes up 30 thousand times less space** (storage on computer hard drive) than the bitcoin blockchain.
 
 ## How DLISh works
 Imagine now, that each of the words stored in the master file can be compressed to 2 UTF-8 numbers. DLISh works by looking up a word, finding the corresponding numerical key, then performing a mathematical operation on that key in order to reduce it to the size of 2 UTF-8 numbers.
@@ -66,16 +68,22 @@ australia
 If we break this data up into individual keys we will have the following
 
 ```
-200 (john)
-100 (smith)
-65536 (sixty)
-6561 (cunningham)
-3000 (street)
+
+100	(smith)
+200	(john)
+256	(cross)
+625	(australia)
 1000 (southern)
-256 (cross)
-4000 (junction)
 2000 (sydney)
-625 (australia)
+3000 (street)
+4000 (junction)
+6561 (cunningham)
+7000 (hundred)
+65536 (sixty)
+70000 (cents)
+1048576 (dollars)
+1048577	(thousand)
+
 ```
 
 The above text has 72 characters if you include the space character where appropriate. 
