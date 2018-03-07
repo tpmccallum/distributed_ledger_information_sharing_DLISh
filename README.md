@@ -1,6 +1,28 @@
 # Distributed Ledger Information Sharing (DLISh)
 A system which stores and shares all required information on, and between, blockchains.
 
+Turn
+
+```
+
+John Smith
+Sixty Cunningham Street
+Southern Cross Junction
+Sydney
+Australia
+
+```
+
+into 
+
+```
+
+a22a12b24b92a33a13b23a43a23b52
+
+```
+
+and never see a word like "John" stored more than once anywhere in storage system ever again.
+
 ## Background
 Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of all data. DLISh seeks to solve this problem. DLISh is a storage and communication system for decentralized ledger applications i.e. blockchains.
 
@@ -106,13 +128,15 @@ function a_encode(number, argument)
 
 The above algorithm "a" creates the following for the first and last name respectively; a22 a12. As you can see with the first name the function used was called "a" the reduced number was 2 (first operation was 200/10=20 then second operation was 20/10=2) and the amount of operations performed in the encoding was 2. Similarly with the last name the function used was "a" and the number was reduced to 1 by performing the divide by 10 operation 2 times (100/10=10 and then 10/10=1) hence the result of a12 
 
+### b
+
 Next we have 65536 which needs to be encoded. 
 Let's encode!
 
 ```
 
 #encode
-function c_encode(numberToEncode)
+function b_encode(numberToEncode)
     import math
     tempNumber = 0
     counter = 0
@@ -129,16 +153,19 @@ The above code will return 24 (the square root function was performed four times
 ```
 
 #decode
-function c_decode(number, multiplier)
+function b_decode(number, multiplier)
     for i in multiplier:
         number = number * number
     return number
     
 ```
 
-The above function c, when called with signature (2, 4) will return 65536 (the original number 2 was transformed each time it was multiplied by itself and this operation was performed 4 times) i.e. 2x2=4, 4x4=16, 16x16=256, 256x256=65536.
+The above function b, when called with signature (2, 4) will return 65536 (the original number 2 was transformed each time it was multiplied by itself and this operation was performed 4 times) i.e. 2x2=4, 4x4=16, 16x16=256, 256x256=65536.
 
-At this stage we have john (200), smith (100) and sixty (655536) which have been encoded into a22a12c24.
+At this stage we have john (200), smith (100) and sixty (655536) which have been encoded into a22a12b24.
+
+If we encode the rest of the data we get the final encoding of 
+a22a12b24b92a33a13b23a43a23b52
 
 ## performance tuning 
 As we discussed earlier the first one hundred numbers are reserved. These numbers 0 through 99 are used at a later dynamic learning stage. It is predicted that, due to the algorithms being generic/generalized, repitition will occur. For example it is possible that either the repeated use of particular words and/or the coincedental output from algorithms will occur. The system will store a temporary count of repeated sets of encoded data. When a particular set of encoded data is repeated often enough the system will automatically allocate one of the reserved numbers to that pattern. Further compressing the encoded string. 
@@ -148,8 +175,8 @@ To realize this the system will always parse the encoded string in chunks (expec
 Essentially, the system will eventually learn about the most frequently used (top 100) patterns, no matter how short or long. These will be shortened by assigning them one of the values between 0 and 99. 
 
 An example of the master compression table is below.
-![Compression table](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/compression_table.png)
 
+![Compression table](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/compression_table.png)
 
 
 ### Atomic transactions
