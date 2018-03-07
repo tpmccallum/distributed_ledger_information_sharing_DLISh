@@ -29,8 +29,61 @@ If we were to store and/or transmit a users full name and address our applicatio
 - reveal the encoded string for storage and/or transmission
 
 Here is a hypothetical example
+Essentially we are storing the following data
+john smith 
+sixty one park road 
+lane cove 
+sydney 
+australia
 
+If we break this data up into individual keys we will have the following
+2
+1
+65536
+65538
+1024
+1025
+1026
+1027
+3
+5
 
+Already we can simply create the first and last name (as the keys are single characters) i.e. john (2) smith (1) will start off the encoding process where each field is separated by the exclaimation point.
+
+2!1!
+
+Next we have 65536 which needs to be compressed. DLISh has 52 different mathematical equations which are capable of compressing large numbers. Each mathematical equation is signalled through the use of a letter. The letters range from the UTF-8 representation of (lower case) a through z as well as from (capital) A through Z (26 letters in the alphabet and therefore a total of 52 equation possibilities).
+
+The algorithm return two numbers the first number is the encoded value which will eventually be decoded and the second number is the argument which will be passed to the decoding algorithm.
+
+Each letter requires both an encoding algorithm and a decoding algorithm.
+
+Here is the psuedo code for a hypothetical example to encode 65536
+
+```
+#encode
+function a_encode()
+    import math
+    numberToEncode = 65536
+    tempNumber = 0
+    counter = 0
+    while numberToEncode.length() > 1:
+        counter = counter + 1
+        tempNumber = math.findSquareRoot(numberToEncode)
+        numberToEncode = tempNumber
+    return [tempNumber, counter]
+    
+```
+The above code will return 24 (the square root function was performed four times and resulted in the single digit 2)
+
+```
+#decode
+function a_decode(number, multiplier)
+    for i in multiplier:
+        number = number * number
+    return number
+```
+The above code will return 65536 (the original number 2 was transformed each time it was multiplied by itself and this operation was performed 4 times) i.e. 2x2=4, 4x4=16, 16x16=256, 256x256=6536.
 
 ### Metadata storage
 The metadata storage container is used to define the type of data being stored. DLISh uses convention instead of configuration and metadata which is not lower camel case will not be accepted. Below is only a small example. You can add as many metadata values as you need via the API.
