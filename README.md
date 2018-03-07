@@ -83,7 +83,7 @@ function a_decode(number, multiplier)
         number = number * number
     return number
 ```
-The above code will return 65536 (the original number 2 was transformed each time it was multiplied by itself and this operation was performed 4 times) i.e. 2x2=4, 4x4=16, 16x16=256, 256x256=6536.
+The above code will return 65536 (the original number 2 was transformed each time it was multiplied by itself and this operation was performed 4 times) i.e. 2x2=4, 4x4=16, 16x16=256, 256x256=65536.
 
 ### Metadata storage
 The metadata storage container is used to define the type of data being stored. DLISh uses convention instead of configuration and metadata which is not lower camel case will not be accepted. Below is only a small example. You can add as many metadata values as you need via the API.
