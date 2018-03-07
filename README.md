@@ -42,6 +42,8 @@ sydney
 australia
 
 If we break this data up into individual keys we will have the following
+
+```
 200 (john)
 100 (smith)
 65536 (sixty)
@@ -52,6 +54,7 @@ If we break this data up into individual keys we will have the following
 4000 (junction)
 2000 (sydney)
 625 (australia)
+```
 
 The above text has 72 characters if you include the space character where appropriate. 
 
