@@ -1,7 +1,14 @@
 # Distributed Ledger Information Sharing (DLISh)
-A system which stores and shares all required information on, and between, blockchains.
 
-Turn (72 characters)
+![DLISh architecture](https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/dlish_architecture.png)
+
+## Overall architecture
+This specific GitHub repository deals with the encoding and decoding of information. The diagram above shows a simplified overview of how NuCypher's pyUmbral and blockchain software can be used to complete the secure information sharing process.
+
+## Diving into DLISh
+DLISh is a ground level system which facilitates the storage and sharing of information on, and between, blockchains.
+
+For example, DLISh will turn (72 characters)
 
 ```
 
@@ -21,7 +28,7 @@ a2a12b24b92a3a13b23a43a23b52
 
 ```
 
-and never see a word like "John" stored more than once anywhere in your storage system ever again.
+Once encoded, the DLISh string can be encrypted and stored or shared between users on one or more blockchains. The encryption [2] and internet of blockchains [1] is out of scope for this GitHub repository.
 
 ## Background
 Decentralized systems are inherently bad at storing and sharing data. This is due, in part, to the fact that all parties store a redundant copy of all data. DLISh seeks to solve this problem. DLISh is a storage and communication system for decentralized ledger applications i.e. blockchains.
