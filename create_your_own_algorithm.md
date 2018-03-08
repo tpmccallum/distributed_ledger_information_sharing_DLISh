@@ -1,10 +1,29 @@
 There are 50 algorithms waiting to be claimed.
+
 If you would like to take care of reducing a set of numbers please complete the following and create a pull request.
 
-## Numbers I/we will be catering for, are as follows.
+## Name of applicant and/or organization
 
 example start
+
+John Smith
+
+example end
+
+## Name of algorithm
+
+example start
+
+Smith's reduction using division
+
+example end
+
+## Set of numbers the algorithm will be catering for
+
+example start
+
 I will be catering for all numbers which start with any single digit and end with only zeros 
+
 example end
 
 ## Regular expression qualifier for my set of numbers
@@ -23,11 +42,13 @@ example end
 
 
 example start
+
 ### Overview
 
 The initial number (to be encoded) is divided by ten. The result of the previous division is used to perform the next division until we are left with a single digit.
 
 ### Resulting number after reduction
+
 For example 
 
 1) 40000/10=4000 then 
@@ -51,7 +72,9 @@ example end
 ## Letter which I would like to reserve for my function/algorithm
 
 example start
+
 This algorithm will be assigned to the lower case letter "a" and therefore the above example of reducing the number 40000 will have the overall output of "a44"
+
 example end
 
 ## Encoding psuedo code
