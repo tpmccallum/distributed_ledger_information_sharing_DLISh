@@ -42,7 +42,14 @@ Put simply, a master file containing over 1/2 million words **takes up 30 thousa
 Imagine now, that each of the words stored in the master file can be compressed to 2 UTF-8 numbers. DLISh works by looking up a word, finding the corresponding numerical key, then performing a mathematical operation on that key in order to reduce the key to the size of 2 UTF-8 numerical characters.
 
 ## The algorithms
-The algorithms are predefined. They are called using UTF-8 alphabetic characters. The encoding algorithms have a qualifier which the number/key, to be encoded, must pass. Once qualified, the key is passed to the appropriate encoding algorithm. The encoding algorith returns two single digit numbers. The first digit returned is the reduced number. The second number returned is a "helper" which can be passed to the decode function when decoding takes place. The "helper" is created dynamically by the encode function and is stored so that it can be later passed to the decode function as an argument. This way the decoding function can learn how many times the encoding function operated on the original number i.e. how many times the encoding function performed, say, the square root function on the number. 
+
+The algorithms in this system are all predefined. 
+
+This is an open source project. If you would like to claim one of the 50 available algorithms, please add your information to the following file and create a pull request.
+
+https://github.com/tpmccallum/distributed_ledger_information_sharing_DLISh/blob/master/create_your_own_algorithm.md
+
+As you will see in the above file, all of the algorithms are called using a single UTF-8 alphabetic character as the prefix i.e. a_encode, a_decode. The encoding algorithms have a qualifier which the number/key, to be encoded, must pass. Once qualified, the key is passed to the appropriate encoding algorithm. The encoding algorith returns two single digit numbers. The first digit returned is the reduced number. The second number returned is a "helper" which can be passed to the decode function when decoding takes place. The "helper" is created dynamically by the encode function and is stored so that it can be later passed to the decode function as an argument. This way the decoding function can learn how many times the encoding function operated on the original number i.e. how many times the encoding function performed, say, the square root function on the number. 
 
 Once encoded, DLISh allows for information to be encrypted and transmitted inside blockchain transactions. The encryption and decryption can be performed between two peers on the blockchain using proxy re-encryption. The proxy re-encryption component (provided by NuCypher [2]) has been successfully tested. It is hoped that the encoded and encrypted data can be sent across blockchains using the Cosmos [1] (internet of blockchains). That part is out of scope for this document. Please follow the links at the base of this document.
 
